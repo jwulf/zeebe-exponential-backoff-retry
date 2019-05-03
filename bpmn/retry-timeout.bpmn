@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1ftqxhi" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Zeebe Modeler" exporterVersion="0.6.2">
+  <bpmn:process id="Process_15wa7y3" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1k5ynzj</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_048julc" name="Specific Timeout period">
+      <bpmn:incoming>SequenceFlow_1k5ynzj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1l05chr</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="ServiceTask_0v2yel6" name="Publish retry message">
+      <bpmn:incoming>SequenceFlow_1l05chr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0h8q3pw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1l05chr" sourceRef="IntermediateCatchEvent_048julc" targetRef="ServiceTask_0v2yel6" />
+    <bpmn:sequenceFlow id="SequenceFlow_1k5ynzj" sourceRef="StartEvent_1" targetRef="IntermediateCatchEvent_048julc" />
+    <bpmn:endEvent id="EndEvent_0etjir3">
+      <bpmn:incoming>SequenceFlow_0h8q3pw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0h8q3pw" sourceRef="ServiceTask_0v2yel6" targetRef="EndEvent_0etjir3" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_15wa7y3">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_048julc_di" bpmnElement="IntermediateCatchEvent_048julc">
+        <dc:Bounds x="284" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="262" y="146" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0v2yel6_di" bpmnElement="ServiceTask_0v2yel6">
+        <dc:Bounds x="370" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1l05chr_di" bpmnElement="SequenceFlow_1l05chr">
+        <di:waypoint x="320" y="121" />
+        <di:waypoint x="370" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1k5ynzj_di" bpmnElement="SequenceFlow_1k5ynzj">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="284" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0etjir3_di" bpmnElement="EndEvent_0etjir3">
+        <dc:Bounds x="520" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0h8q3pw_di" bpmnElement="SequenceFlow_0h8q3pw">
+        <di:waypoint x="470" y="121" />
+        <di:waypoint x="520" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
